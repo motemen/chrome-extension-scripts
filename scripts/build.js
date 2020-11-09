@@ -78,7 +78,7 @@ webpack_1.default({
 }, (err, stats) => {
     if (stats) {
         if (stats.hasErrors()) {
-            console.error(stats.toString({ colors: true }));
+            console.error(stats.toString("errors-warnings"));
             process.exitCode = 1;
             return;
         }
