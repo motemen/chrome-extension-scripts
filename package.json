@@ -1,6 +1,6 @@
 {
-  "name": "chrome-extension-scripts",
-  "version": "1.0.0",
+  "name": "@motemen/chrome-extension-scripts",
+  "version": "0.1.0",
   "main": "index.js",
   "license": "MIT",
   "private": true,
@@ -13,6 +13,7 @@
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^6.3.0",
     "cross-spawn": "^7.0.3",
+    "cross-zip": "^4.0.0",
     "eslint": "^7.13.0",
     "eslint-config-prettier": "^6.15.0",
     "eslint-webpack-plugin": "^2.2.1",
@@ -27,6 +28,7 @@
   "devDependencies": {
     "@types/copy-webpack-plugin": "^6.2.0",
     "@types/cross-spawn": "^6.0.2",
-    "@types/eslint": "^7.2.4"
+    "@types/eslint": "^7.2.4",
+    "@types/glob": "^7.1.3"
   }
 }

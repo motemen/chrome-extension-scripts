@@ -28,8 +28,9 @@ const clean_webpack_plugin_1 = require("clean-webpack-plugin");
 const eslint_webpack_plugin_1 = __importDefault(require("eslint-webpack-plugin"));
 const glob = __importStar(require("glob"));
 const path = __importStar(require("path"));
-const rootDir = path.join(__dirname, "..", "..", "..");
+const rootDir = process.cwd();
 const extensions = ["ts", "tsx", "js", "jsx"];
+const packageJSON = require(path.join(rootDir, "package.json"));
 webpack_1.default({
     mode: "development",
     entry: Object.fromEntries(glob
@@ -65,8 +66,8 @@ webpack_1.default({
                     transform: (content) => {
                         return JSON.stringify({
                             ...JSON.parse(content.toString()),
-                            version: process.env.npm_package_version,
-                        });
+                            version: packageJSON.version,
+                        }, null, 2);
                     },
                 },
                 { from: "icons/*", context: "src/" },

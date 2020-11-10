@@ -2,21 +2,22 @@
 
 import spawn from "cross-spawn";
 
-process.on("unhandledRejection", (err) => {
-  throw err;
-});
+const args = process.argv;
+const command = args[2];
 
-const args = process.argv.slice(2);
-const command = args[0];
+const underTypeScript = (process as any)[
+  Symbol.for("ts-node.register.instance")
+];
 
-if (command === "build") {
+try {
+  const script = require.resolve(`../scripts/${command}`);
   const result = spawn.sync(
-    process.execPath,
-    [require.resolve(`../scripts/${command}`), ...args.slice(1)],
+    args[0],
+    [...(underTypeScript ? ["--script-mode"] : []), script, ...args.slice(2)],
     { stdio: "inherit" }
   );
   process.exit(result.status ?? 1);
-} else {
+} catch (_err) {
   console.error(`Unknown command: ${command}`);
   process.exit(1);
 }

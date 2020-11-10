@@ -6,8 +6,10 @@ import ESLintWebpackPlugin from "eslint-webpack-plugin";
 import * as glob from "glob";
 import * as path from "path";
 
-const rootDir = path.join(__dirname, "..", "..", "..");
+const rootDir = process.cwd();
 const extensions = ["ts", "tsx", "js", "jsx"];
+
+const packageJSON = require(path.join(rootDir, "package.json"));
 
 webpack(
   {
@@ -45,10 +47,14 @@ webpack(
           {
             from: "src/manifest.json",
             transform: (content) => {
-              return JSON.stringify({
-                ...JSON.parse(content.toString()),
-                version: process.env.npm_package_version,
-              });
+              return JSON.stringify(
+                {
+                  ...JSON.parse(content.toString()),
+                  version: packageJSON.version,
+                },
+                null,
+                2
+              );
             },
           },
           { from: "icons/*", context: "src/" },
