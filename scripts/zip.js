@@ -19,9 +19,11 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 const cross_zip_1 = require("cross-zip");
 const path = __importStar(require("path"));
 const rootDir = process.cwd();
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const manifest = require(path.join(rootDir, "build", "manifest.json"));
 cross_zip_1.zipSync(path.join(rootDir, "build"), `${manifest.name.replace(/\W/g, "_")}-${manifest.version}.zip`);

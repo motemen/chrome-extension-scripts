@@ -26,10 +26,15 @@ const webpack_1 = __importDefault(require("webpack"));
 const copy_webpack_plugin_1 = __importDefault(require("copy-webpack-plugin"));
 const clean_webpack_plugin_1 = require("clean-webpack-plugin");
 const eslint_webpack_plugin_1 = __importDefault(require("eslint-webpack-plugin"));
+const ts_node_1 = require("ts-node");
 const glob = __importStar(require("glob"));
 const path = __importStar(require("path"));
 const rootDir = process.cwd();
+const scriptsRoot = process[ts_node_1.REGISTER_INSTANCE]
+    ? path.join("..", "..")
+    : path.join("..");
 const extensions = ["ts", "tsx", "js", "jsx"];
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const packageJSON = require(path.join(rootDir, "package.json"));
 webpack_1.default({
     mode: "development",
@@ -57,6 +62,11 @@ webpack_1.default({
     plugins: [
         new eslint_webpack_plugin_1.default({
             extensions,
+            eslintPath: require.resolve("eslint"),
+            resolvePluginsRelativeTo: __dirname,
+            baseConfig: {
+                extends: [require.resolve(path.join(scriptsRoot, ".eslintrc.json"))],
+            },
         }),
         new clean_webpack_plugin_1.CleanWebpackPlugin(),
         new copy_webpack_plugin_1.default({
@@ -70,7 +80,7 @@ webpack_1.default({
                         }, null, 2);
                     },
                 },
-                { from: "icons/*", context: "src/" },
+                { from: "assets/**", context: "src/" },
             ],
         }),
     ],

@@ -2,13 +2,22 @@ import webpack from "webpack";
 import CopyWebpackPlugin from "copy-webpack-plugin";
 import { CleanWebpackPlugin } from "clean-webpack-plugin";
 import ESLintWebpackPlugin from "eslint-webpack-plugin";
+import {
+  Options as ESLintWebpackPluginOptions,
+  ESLintOptions,
+} from "eslint-webpack-plugin/declarations/options";
+import { REGISTER_INSTANCE } from "ts-node";
 
 import * as glob from "glob";
 import * as path from "path";
 
 const rootDir = process.cwd();
+const scriptsRoot =
+  REGISTER_INSTANCE in process ? path.join("..", "..") : path.join("..");
+
 const extensions = ["ts", "tsx", "js", "jsx"];
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const packageJSON = require(path.join(rootDir, "package.json"));
 
 webpack(
@@ -40,7 +49,12 @@ webpack(
     plugins: [
       new ESLintWebpackPlugin({
         extensions,
-      }),
+        eslintPath: require.resolve("eslint"),
+        resolvePluginsRelativeTo: __dirname,
+        baseConfig: {
+          extends: [require.resolve(path.join(scriptsRoot, ".eslintrc.json"))],
+        },
+      } as ESLintOptions & ESLintWebpackPluginOptions),
       new CleanWebpackPlugin(),
       new CopyWebpackPlugin({
         patterns: [
@@ -57,7 +71,7 @@ webpack(
               );
             },
           },
-          { from: "icons/*", context: "src/" },
+          { from: "assets/**", context: "src/" },
         ],
       }),
     ],

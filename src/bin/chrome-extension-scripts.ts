@@ -1,13 +1,12 @@
 #!/usr/bin/env node
 
 import spawn from "cross-spawn";
+import { REGISTER_INSTANCE } from "ts-node";
 
 const args = process.argv;
 const command = args[2];
 
-const underTypeScript = (process as any)[
-  Symbol.for("ts-node.register.instance")
-];
+const underTypeScript = REGISTER_INSTANCE in process;
 
 try {
   const script = require.resolve(`../scripts/${command}`);
