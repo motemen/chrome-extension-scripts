@@ -6,9 +6,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 const cross_spawn_1 = __importDefault(require("cross-spawn"));
+const ts_node_1 = require("ts-node");
 const args = process.argv;
 const command = args[2];
-const underTypeScript = process[Symbol.for("ts-node.register.instance")];
+const underTypeScript = ts_node_1.REGISTER_INSTANCE in process;
 try {
     const script = require.resolve(`../scripts/${command}`);
     const result = cross_spawn_1.default.sync(args[0], [...(underTypeScript ? ["--script-mode"] : []), script, ...args.slice(2)], { stdio: "inherit" });

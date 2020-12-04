@@ -30,9 +30,7 @@ const ts_node_1 = require("ts-node");
 const glob = __importStar(require("glob"));
 const path = __importStar(require("path"));
 const rootDir = process.cwd();
-const scriptsRoot = process[ts_node_1.REGISTER_INSTANCE]
-    ? path.join("..", "..")
-    : path.join("..");
+const scriptsRoot = ts_node_1.REGISTER_INSTANCE in process ? path.join("..", "..") : path.join("..");
 const extensions = ["ts", "tsx", "js", "jsx"];
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const packageJSON = require(path.join(rootDir, "package.json"));

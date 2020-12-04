@@ -2,10 +2,6 @@ import webpack from "webpack";
 import CopyWebpackPlugin from "copy-webpack-plugin";
 import { CleanWebpackPlugin } from "clean-webpack-plugin";
 import ESLintWebpackPlugin from "eslint-webpack-plugin";
-import {
-  Options as ESLintWebpackPluginOptions,
-  ESLintOptions,
-} from "eslint-webpack-plugin/declarations/options";
 import { REGISTER_INSTANCE } from "ts-node";
 
 import * as glob from "glob";
@@ -54,7 +50,7 @@ webpack(
         baseConfig: {
           extends: [require.resolve(path.join(scriptsRoot, ".eslintrc.json"))],
         },
-      } as ESLintOptions & ESLintWebpackPluginOptions),
+      }),
       new CleanWebpackPlugin(),
       new CopyWebpackPlugin({
         patterns: [
