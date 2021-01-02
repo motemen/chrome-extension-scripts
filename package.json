@@ -14,7 +14,7 @@
     "copy-webpack-plugin": "6.3.2",
     "cross-spawn": "7.0.3",
     "cross-zip": "4.0.0",
-    "eslint": "7.16.0",
+    "eslint": "7.17.0",
     "eslint-config-prettier": "6.15.0",
     "eslint-webpack-plugin": "2.4.1",
     "glob": "7.1.6",
