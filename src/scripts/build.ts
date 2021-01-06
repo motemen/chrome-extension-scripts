@@ -2,23 +2,33 @@ import webpack from "webpack";
 import CopyWebpackPlugin from "copy-webpack-plugin";
 import { CleanWebpackPlugin } from "clean-webpack-plugin";
 import ESLintWebpackPlugin from "eslint-webpack-plugin";
-import { REGISTER_INSTANCE } from "ts-node";
+
+import { isUnderTSNode } from "../lib/utils";
 
 import * as glob from "glob";
 import * as path from "path";
+import { execSync } from "child_process";
 
 const rootDir = process.cwd();
-const scriptsRoot =
-  REGISTER_INSTANCE in process ? path.join("..", "..") : path.join("..");
+const scriptsRoot = isUnderTSNode() ? path.join("..", "..") : path.join("..");
 
 const extensions = ["ts", "tsx", "js", "jsx"];
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const packageJSON = require(path.join(rootDir, "package.json"));
 
+const modeWatch = process.argv.slice(2).indexOf("--watch") !== -1;
+
 webpack(
   {
-    mode: "development",
+    ...(modeWatch
+      ? {
+          watch: true,
+          mode: "development",
+        }
+      : {
+          mode: "production",
+        }),
     entry: Object.fromEntries(
       glob
         .sync(path.join(rootDir, "src", `*.{${extensions.join(",")}}`))

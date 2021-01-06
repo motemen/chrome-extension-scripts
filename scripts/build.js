@@ -26,11 +26,11 @@ const webpack_1 = __importDefault(require("webpack"));
 const copy_webpack_plugin_1 = __importDefault(require("copy-webpack-plugin"));
 const clean_webpack_plugin_1 = require("clean-webpack-plugin");
 const eslint_webpack_plugin_1 = __importDefault(require("eslint-webpack-plugin"));
-const ts_node_1 = require("ts-node");
+const utils_1 = require("../lib/utils");
 const glob = __importStar(require("glob"));
 const path = __importStar(require("path"));
 const rootDir = process.cwd();
-const scriptsRoot = ts_node_1.REGISTER_INSTANCE in process ? path.join("..", "..") : path.join("..");
+const scriptsRoot = utils_1.isUnderTSNode() ? path.join("..", "..") : path.join("..");
 const extensions = ["ts", "tsx", "js", "jsx"];
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const packageJSON = require(path.join(rootDir, "package.json"));
