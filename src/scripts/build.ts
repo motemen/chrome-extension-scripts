@@ -7,7 +7,6 @@ import { isUnderTSNode } from "../lib/utils";
 
 import * as glob from "glob";
 import * as path from "path";
-import { execSync } from "child_process";
 
 const rootDir = process.cwd();
 const scriptsRoot = isUnderTSNode() ? path.join("..", "..") : path.join("..");
