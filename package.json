@@ -15,7 +15,7 @@
     "cross-spawn": "7.0.3",
     "cross-zip": "4.0.0",
     "eslint": "7.17.0",
-    "eslint-config-prettier": "7.1.0",
+    "eslint-config-prettier": "7.2.0",
     "eslint-webpack-plugin": "2.4.1",
     "glob": "7.1.6",
     "ts-loader": "8.0.14",
