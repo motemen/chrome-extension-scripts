@@ -3,7 +3,6 @@
   "version": "1.0.0-alpha",
   "main": "index.js",
   "license": "MIT",
-  "private": true,
   "bin": {
     "chrome-extension-scripts": "./bin/chrome-extension-scripts.js"
   },
