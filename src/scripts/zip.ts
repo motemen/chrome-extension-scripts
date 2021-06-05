@@ -2,13 +2,20 @@
 // @ts-ignore
 import { zipSync } from "cross-zip";
 import * as path from "path";
+import * as yargs from "yargs";
+
+const argv = yargs.option("build", {
+  default: "build",
+  type: "string",
+}).argv;
 
 const rootDir = process.cwd();
+const buildDir = argv.build;
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const manifest = require(path.join(rootDir, "build", "manifest.json"));
+const manifest = require(path.join(rootDir, buildDir, "manifest.json"));
 
 zipSync(
-  path.join(rootDir, "build"),
+  path.join(rootDir, buildDir),
   `${manifest.name.replace(/\W/g, "_")}-${manifest.version}.zip`
 );

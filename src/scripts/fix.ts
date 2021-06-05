@@ -13,6 +13,7 @@ const extensions = ["ts", "tsx", "js", "jsx"];
 const exec = (cmd: string, ...args: string[]) => {
   console.log(`# ${cmd} ${args.join(" ")}`);
   const fullCmd = path.join(binPath, cmd);
+  // TODO: do not show long stack traces on fail
   execFileSync(fullCmd, args, {
     stdio: "inherit",
   });
