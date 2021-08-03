@@ -19,7 +19,7 @@ const exec = (cmd: string, ...args: string[]) => {
   });
 };
 
-exec("prettier", "--write", "src/");
+exec("prettier", "--write", "src");
 
 exec(
   "eslint",
