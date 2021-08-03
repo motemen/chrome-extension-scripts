@@ -29,7 +29,7 @@
     "prepare": "tsc"
   },
   "devDependencies": {
-    "@types/copy-webpack-plugin": "8.0.0",
+    "@types/copy-webpack-plugin": "8.0.1",
     "@types/cross-spawn": "6.0.2",
     "@types/eslint": "7.2.13",
     "@types/glob": "7.1.3",
