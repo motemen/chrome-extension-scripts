@@ -1,11 +1,16 @@
 {
   "name": "@motemen/chrome-extension-scripts",
   "version": "1.0.0-alpha",
-  "main": "index.js",
   "license": "MIT",
   "bin": {
     "chrome-extension-scripts": "./bin/chrome-extension-scripts.js"
   },
+  "files": [
+    "bin/*",
+    "lib/*",
+    "scripts/*",
+    ".eslintrc.json"
+  ],
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "4.26.0",
     "@typescript-eslint/parser": "4.26.0",
