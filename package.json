@@ -14,7 +14,7 @@
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "4.26.0",
     "@typescript-eslint/parser": "4.26.0",
-    "clean-webpack-plugin": "4.0.0-alpha.0",
+    "clean-webpack-plugin": "4.0.0",
     "copy-webpack-plugin": "9.0.0",
     "cross-spawn": "7.0.3",
     "cross-zip": "4.0.0",
