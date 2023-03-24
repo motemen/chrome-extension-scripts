@@ -37,7 +37,7 @@
     "@types/copy-webpack-plugin": "10.1.0",
     "@types/cross-spawn": "6.0.2",
     "@types/eslint": "8.4.1",
-    "@types/glob": "7.2.0",
+    "@types/glob": "8.1.0",
     "@types/prettier": "^2.4.4",
     "@types/yargs": "^17.0.8"
   }
